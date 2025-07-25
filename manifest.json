@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "my-plugin",
+  "version": "0.1.0",
+  "description": "这是一段描述",
+  "icons": {
+    "84": "./icons/hello.jpg"
+  },
+  "action": {
+    "default_icon": "./icons/hello.jpg",
+    "default_title": "我的插件",
+    "default_popup": "./html/popup.html"
+  },
+  "background": {
+    "service_worker": "./js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./js/content.js"],
+      "css": ["./css/style.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.baidu.com/"],
+      "js": ["./js/other.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["js/inject.js"]
+    }
+  ]
+}
