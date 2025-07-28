@@ -32,5 +32,13 @@
       "matches": ["<all_urls>"],
       "resources": ["js/inject.js"]
     }
+  ],
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
   ]
 }

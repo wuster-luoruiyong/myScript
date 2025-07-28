@@ -35,6 +35,21 @@
       "js": ["./js/other.js"],
       "run_at": "document_start"
     }
+  ],
+   "web_accessible_resources": [
+    // 允许插件调用JS代码，如需要注入JS,允许在哪些页面执行
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["js/inject.js"]
+    }
+  ],
+  "permissions": [ // 允许的权限
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
   ]
 }
 ```
@@ -49,3 +64,7 @@ chrome.storage
 ## Inject-scripts
 inject-scripts 是通过DOM操作插入的JS代码，通常在content-scripts只能操作DOM，但是却无法访问页面的JS，借助content-scripts可以操作DOM的能力，往页面中插入JS文件，给页面提供调用插件API的能力，以及和background通信的能力。
 在插入之前，需配置一下web可访问的资源，同时content-scripts的调用时机换成"document_end"或者"document_idle"，不然会无法获取DOM,导致插入失败
+
+
+## permissions
+插件后台有的操作需要配置相应的权限，例如本地存储、网络请求、通知等等
